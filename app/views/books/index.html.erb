@@ -1,5 +1,5 @@
 <body>
- 
+
       <main>
         <p id="notice"></p>
         <div class="container px-5 px-sm-0">
@@ -19,7 +19,10 @@
 </tbody></table>
 
 <div class="row">
-  <a class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_32813" href="/users/32813/edit"></a>
+
+  <%= link_to '', edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block fas fa-user-cog edit_user_32813" %>
+
+
 </div>
       <h2 class="mt-3">New book</h2>
       <form action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="ljuHUcNDHi9qkSbUe9FaJlJC7m5sWXOYBJd2A/La7C+V8nu0U24Y3eEukVWnWcBQzw+TIay2iPlOYqX4f/9tUg==">
