@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def show
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def list_params
+  def user_params
     params.require(:user).permit(:name,:introduction, :profile_image_id)
   end
 end
