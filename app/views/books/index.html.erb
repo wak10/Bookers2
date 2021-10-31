@@ -1,5 +1,15 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-12 text-danger" >
+      <% if @new_book.errors.any? %>
+      <ul>
+        <h3><%= @new_book.errors.count %>errors prohibited this obj from being saved:</h3>
+        <% @new_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
     <%= render 'books/list', new_book: @new_book, user: @user %>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -16,7 +26,10 @@
           <tbody>
             <% @book.each do |book| %>
             <tr>
-            <td><%= attachment_image_tag @user, :profile_image_id, :fill, size:"40x40", format: 'jpeg', fallback: "no_image.jpg" %></td>
+            <td><%= link_to user_path(book.user) do %>
+             <%= attachment_image_tag book.user, :profile_image, :fill, size:"40x40", format: 'jpeg', fallback: "no_image.jpg" %>
+            </td>
+            <% end %>
             <td><%= link_to book.title, book_path(book.id)  %></td>
             <td><%= book.body %></td>
             <% end %>

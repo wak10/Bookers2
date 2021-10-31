@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @user = current_user
+    @new_book = Book.new
+
 
   end
 
@@ -14,11 +17,21 @@ class UsersController < ApplicationController
 		@book = Book.new
     @user = User.find(params[:id])
     @books = @user.books
+
   end
 
   def edit
     @user = User.find(params[:id])
+    # 他人のユーザ情報編集画面に遷移できないように
+    if @user == current_user
+      render "edit"
+    else
+      redirect_to user_path(current_user.id)
+    end
+
   end
+
+
 
   def update
     @user = User.find(params[:id])

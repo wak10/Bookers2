@@ -1,5 +1,15 @@
 <div class="container">
   <div class="row">
+      <div class="col-md-12 text-danger" >
+      <% if @new_book.errors.any? %>
+      <ul>
+        <h3><%= @new_book.errors.count %>errors prohibited this obj from being saved:</h3>
+        <% @new_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
     <%= render 'books/list', new_book: @new_book, user: current_user %>
     <div class="col-md-8 offset-md-1">
       <h2>Users</h2>
